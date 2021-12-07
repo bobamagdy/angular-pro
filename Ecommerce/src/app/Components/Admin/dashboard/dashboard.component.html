@@ -1,0 +1,110 @@
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+      <div class="sidebar-header">
+          <h3>Welcome</h3>
+      </div>
+
+      <ul class="list-unstyled components">
+          <li class="active">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                  <i class="fa fa-user"></i>
+                  Users
+              </a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                  <li>
+                      <a (click)="CheckUser()">User List</a>
+                  </li>
+                  <li>
+                    <a (click)="CheckUserRoleList()">User Role</a>
+                </li>
+
+              </ul>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fa fa-briefcase"></i>
+                  About
+              </a>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                  <i class="fa fa-copy"></i>
+                  Pages
+              </a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                  <li>
+                      <a href="#">Page 1</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 2</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 3</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fa fa-image"></i>
+                  Portfolio
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fa fa-question"></i>
+                  FAQ
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fa fa-paper-plane"></i>
+                  Contact
+              </a>
+          </li>
+      </ul>
+
+
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid btn-res" >
+
+              <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                  <i class="fa fa-align-left"></i>
+              </button>
+
+              <div class="pl-2 pr-2 title" style="display:inline-block;font-size: 20px;color: blue;">
+                Control Panel
+              </div>
+          </div>
+      </nav>
+      <div class="container main-panel">
+        <div *ngIf="isUserList">
+          <div class="alert alert-primary" role="alert">
+            <strong>
+              User List
+            </strong>
+          </div>
+          <button type="button" class="btn btn-primary mb-3" (click)="AddUser()">
+            Add New User
+          </button>
+          <app-users></app-users>
+        </div>
+        <div *ngIf="isUserRoleList">
+          <div class="alert alert-primary" role="alert">
+            <strong>
+              User Roles
+            </strong>
+          </div>
+          <app-user-roles></app-user-roles>
+        </div>
+        <div *ngIf="isAddUser">
+          <app-add-user></app-add-user>
+        </div>
+      </div>
+  </div>
+</div>
+
+

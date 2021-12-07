@@ -1,0 +1,106 @@
+<div class="container mt4 mb-4">
+  <div class="login-container">
+    <!--alert in page top-->
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="message != null && message != ''">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only"></span>
+      </button>
+      {{ message }}
+    </div>
+
+    <h5 style="text-align: center">Register Now</h5>
+
+    <hr class="mb-4" />
+
+    <form [formGroup]="userForm" (ngSubmit)="register()">
+<!--user name div-->
+      <div class="formGroup">
+        <label for="exampleInputUserName" class="form-label">User Name</label>
+
+        <input type="text" formControlName="userName" class="form-control" id="exampleInputUserName"
+          placeholder="Enter Your User Name"
+          [class.is-invalid]="userForm.controls['userName'].invalid"
+          [class.is-valid]="userForm.controls['userName'].valid"
+          (blur)="isUserNameExist()"/>
+
+        <div class="text-danger" [hidden]="
+            userForm.controls['userName'].untouched ||
+            userForm.controls['userName'].dirty
+          " class="alert alert-danger">
+          {{ messageValidate.userName.required }}
+        </div>
+        <div class="text-danger">
+          {{ messageValidate.userName.repeat }}
+        </div>
+      </div>
+      <!--email div-->
+
+      <div class="formGroup">
+        <label for="exampleInputEmail" class="form-label">Email</label>
+        <input type="email" formControlName="email" class="form-control" id="exampleInputEmail"
+          placeholder="Enter Your Email Address" [class.is-invalid]="userForm.controls['email'].invalid"
+          [class.is-valid]="userForm.controls['email'].valid" (blur)="isEmailExist()" />
+        <div class="text-danger" [hidden]="
+            userForm.controls['email'].untouched ||
+            userForm.controls['email'].dirty
+          " class="alert alert-danger">
+          {{ messageValidate.email.required }}
+        </div>
+
+        <div class="text-danger" [hidden]="userForm.controls['email'].invalid || (userForm.controls['email'].dirty || userForm.controls['email'].touched)"
+         class="alert alert-danger">
+          {{ messageValidate.email.notValid }}
+        </div>
+        <div class="text-danger" >
+          {{messageValidate.email.repeat}}
+          </div>
+      </div>
+
+      <div class="formGroup">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1"
+          placeholder="Enter Your password" [class.is-invalid]="userForm.controls['password'].invalid"
+          [class.is-valid]="userForm.controls['password'].valid" minlength="6" />
+        <div class="text-danger" [hidden]="
+            userForm.controls['password'].untouched ||
+            userForm.controls['password'].dirty
+          " class="alert alert-danger">
+          {{ messageValidate.password.required }}
+        </div>
+        <div class="text-danger" [hidden]="isPasswordValid()" class="alert alert-danger">
+          {{ messageValidate.password.notMatch }}
+        </div>
+      </div>
+
+      <div class="formGroup">
+        <label for="passwordConfirm" class="form-label">Confirm Password</label>
+        <input type="Password" formControlName="passwordConfirm" class="form-control" id="exampleInputPassword2"
+          placeholder="Enter Your Password Confirm" [class.is-invalid]="userForm.controls['passwordConfirm'].invalid"
+          [class.is-valid]="userForm.controls['passwordConfirm'].valid" minlength="6" />
+        <div class="text-danger" [hidden]="
+            userForm.controls['passwordConfirm'].untouched ||
+            userForm.controls['passwordConfirm'].dirty
+          " class="alert alert-danger">
+          {{ messageValidate.passwordConfirm.required }}
+        </div>
+        <div class="text-danger" [hidden]="!isPasswordMatch()" class="alert alert-danger">
+          {{ messageValidate.passwordConfirm.isMatch }}
+        </div>
+      </div>
+
+      <button [disabled]="
+          userForm.invalid ||
+          isPasswordMatch()
+        " type="submit" class="btn btn-primary">
+        Register
+      </button>
+
+    </form>
+
+    <h6 class="mt-3">If you have account go yo login page</h6>
+
+    <button class="btn btn-success">Login</button>
+
+  </div>
+</div>

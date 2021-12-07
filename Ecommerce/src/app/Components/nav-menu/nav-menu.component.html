@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="">{{ title }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <a routerLink="ControlPanel" class="text-dark nav-link" [hidden]="!IsAdmin()">
+          <i class="fa fa-user-circle-o mr-2" aria-hidden="true"></i>
+          Control Panel
+        </a>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="" *ngIf="!isUserRegistered()">
+              <a class="dropdown-item" routerLink="Register">Register</a>
+              <a class="dropdown-item" routerLink="Login">Login</a>
+            </div>
+            <div class="" *ngIf="isUserRegistered()">
+              <a class="dropdown-item" routerLink="Home" (click)="logout()">Logout</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

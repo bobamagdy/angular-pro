@@ -1,0 +1,27 @@
+<div class="">
+  <div>
+    <table class="table table-response bg-light border">
+      <thead>
+        <tr class="bg-primary text-light">
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Country</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td scope="row">{{user.userName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phoneNumber}}</td>
+          <td>{{user.country}}</td>
+          <td>
+            <button type="button"  class="btn btn-primary btn-sm" (click)="EditUserClick(user.id)">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
